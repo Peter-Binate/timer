@@ -23,6 +23,10 @@ app.use(express.json());
 const userRoute = require("./routes/userRoute");
 app.use("/users", userRoute);
 
+// TimeRoute
+const timeRoute = require("./routes/timeRoute");
+app.use("/", timeRoute);
+
 // Démarrage du serveur Express et écoute sur le port spécifié
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`); // Affiche un message dans la console lorsque le serveur démarre

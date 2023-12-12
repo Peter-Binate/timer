@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 // on acccède à toute les méthodes disponibles de mongoose que l'on stocke dans Schema
 const Schema = mongoose.Schema;
 
-let commentSchema = new Schema({
+let timerSchema = new Schema({
   time: {
     type: Number,
     required: true,
