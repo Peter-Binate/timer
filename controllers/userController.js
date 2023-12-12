@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const bcrypt = require("bcrypt");
 
 // On créé le user
 exports.userRegister = async (req, res) => {
@@ -24,7 +25,14 @@ exports.userLogin = async (req, res) => {
       res.status(500).json({ message: "utilisateur non trouvé" });
       return;
     }
-    if (user.email == req.body.email && user.password == req.body.password) {
+
+    // On compare les mots de passe hachés
+    const isPasswordValid = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+
+    if (isPasswordValid && user.email == req.body.email) {
       const userData = {
         id: user.id,
         email: user.email,
